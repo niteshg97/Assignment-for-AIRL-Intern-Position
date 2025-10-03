@@ -1,4 +1,4 @@
-# Vision Transformer (ViT) on CIFAR-10
+# (1) Vision Transformer (ViT) on CIFAR-10
 
 ## 📌 Goal
 
@@ -74,3 +74,51 @@ For a small 32x32 image, simply making the model deeper (e.g., 12 transformer la
 ## 🏆 Conclusion
 
 This project highlights how **careful architectural design, regularization, and augmentations** make it possible to train a Vision Transformer effectively on small-scale datasets such as CIFAR-10.
+
+
+---
+
+# (2) Zero-Shot Object Detection and Segmentation with Grounding DINO & SAM
+
+
+This repository demonstrates a simple end-to-end pipeline to detect and segment objects in an image using natural language prompts.
+
+---
+
+## 🖼️ Pipeline Overview
+
+Load image → accept a text prompt → convert text to region seeds (via **GroundingDINO**) → feed seeds to **SAM** → display final mask overlay.
+
+- Designed to run entirely in **Google Colab**. All installation and setup cells are included at the top of the notebook.
+- Supports zero-shot detection: no training required.
+- Allows extracting segmented objects or visualizing masks directly on the input image.
+
+---
+
+## ⚡ Key Features
+
+- **Zero-Shot Detection:** Detect objects directly from text prompts.  
+- **High-Precision Segmentation:** SAM generates accurate masks for complex shapes.  
+- **End-to-End Colab Workflow:** Simply open the notebook and run all cells.  
+- **Object Extraction:** Cut out objects from original backgrounds if needed.
+
+---
+
+## ⚠️ Limitations
+
+- Detection depends on prompt accuracy; unusual or ambiguous text may yield suboptimal results.  
+- Very small or heavily occluded objects may not be segmented correctly.  
+- SAM masks may require minor post-processing for perfect edges in some cases.  
+- Colab GPU memory may limit the size of input images or number of objects processed simultaneously.
+
+---
+
+## 🚀 Getting Started
+
+1. **Open in Colab** using the badge above or [this link](https://github.com/niteshg97/Assignment-for-AIRL-Intern-Position/blob/main/q2.ipynb).  
+2. **Upload an image** or use the sample provided.  
+3. **Provide text prompts** for the objects you want to detect:  
+```python
+CLASSES = ["a person", "a chair", "sunglasses"]
+
+
