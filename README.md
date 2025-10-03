@@ -56,22 +56,14 @@ All code is contained in **q1.ipynb**, optimized for running on **Google Colab**
 
 * **Final Test Accuracy:** **77.90%** (after 50 epochs on CIFAR-10).
 
-### Observations:
+The model was trained for 50 epochs, and the final test accuracy was measured on the unseen CIFAR-10 test set.
 
-* Initial training without strong augmentation resulted in ~50% accuracy due to overfitting.
-* Augmentations such as **RandomResizedCrop**, **RandomHorizontalFlip**, and **TrivialAugmentWide** were crucial to improve generalization.
-* Simply increasing depth (e.g., 12 layers with a small embedding) was ineffective.
-* Increasing model **width (embed_dim=192)** led to better feature representation and higher accuracy.
+**Test Accuracy: 77.90%**
 
----
+My initial attempts without significant data augmentation barely crossed the 50% accuracy mark, as the model quickly began to overfit. Introducing augmentations like RandomResizedCrop, RandomHorizontalFlip, and especially TrivialAugmentWide was the single most impactful change. It forces the model to learn the underlying features of an object rather than just memorizing pixel patterns, which is essential for generalization.
 
-## 🔑 Key Takeaways
+For a small 32x32 image, simply making the model deeper (e.g., 12 transformer layers) with a tiny embedding dimension didn't yield good results. A better strategy was to make the model moderately "wide" by increasing the embed_dim to 192. This gives each layer more capacity to create rich feature representations from the patches, which proved more effective than passing a low-information vector through many layers.
 
-* **Data augmentation** is critical when training ViTs on small datasets like CIFAR-10.
-* **Balanced model design** (moderate depth, sufficient width) performs better than deeper but narrow networks.
-* Regularization and learning rate scheduling (CosineAnnealingLR) stabilize training and boost performance.
-
----
 
 ## 📌 File Structure
 
